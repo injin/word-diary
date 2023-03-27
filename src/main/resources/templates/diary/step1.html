@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/defaultLayout}"
+      layout:fragment="content">
+<body>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">오늘 당신을 관통한 단어를 입력해 주세요.</h3>
+                    <div class="field is-grouped">
+                        <p class="control is-expanded">
+                            <input class="input" id="wordInput" type="text" th:onkeyup="onEnterAdd()" placeholder="단어 입력">
+                        </p>
+                        <p class="control">
+                            <a class="button is-light" th:onclick="addWord()">입력</a>
+                        </p>
+                    </div>
+                    <div class="tags are-large is-centered" id="wordList">
+                        <!--<span class="tag">단어<button class="delete is-small"></button></span> -->
+                    </div>
+
+                    <div style="position:relative">
+                        <nav class="pagination is-rounded pt-6" role="navigation" aria-label="pagination">
+                            <a class="pagination-next" th:onclick="next()">다음</a>
+                            <ul class="pagination-list">
+                                <li><a class="pagination-link is-current" aria-label="Goto step 1">1</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 45">2</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 45">3</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+<script>
+// 입력창 엔터
+function onEnterAdd() {
+    if (window.event.keyCode == 13) {
+        addWord();
+    }
+}
+
+// 단어 입력
+function addWord() {
+
+    let targetWord = $('#wordInput').val().trim();
+    if (targetWord == null || targetWord.length == 0) {
+        alert('단어를 입력해 주세요');
+        return false;
+    }
+    let wordHtml = `<span class="tag">${targetWord}<button class="delete is-small" onclick="deleteWord(this)"></button></span>`;
+    $('#wordList').append(wordHtml);
+    $('#wordInput').val('');
+}
+
+// 단어 삭제
+function deleteWord(thisEl) {
+    $(thisEl).parent().remove();
+}
+
+// 다음
+function next() {
+
+
+}
+
+$(function(){
+
+});
+</script>
+</html>

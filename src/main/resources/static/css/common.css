@@ -1,0 +1,18 @@
+body {
+    background-color: #F8F9FD;
+    min-height: 600px;
+}
+/* 메인화면 */
+.home_section h2 {
+    color: #12494c !important;
+}
+.home_section p {
+    color: white !important;
+}
+.meditation_img_box {
+    background-image: url(/img/meditation5.png);
+    /*background-position: center center;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+	/*height: 500px;*/
+}

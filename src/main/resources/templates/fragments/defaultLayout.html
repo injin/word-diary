@@ -4,13 +4,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
     <!--공통 JS / CSS -->
-    <head th:replace="fragments/config :: configFragment">
+    <head th:replace="~{fragments/config :: configFragment}">
         <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">공통 타이틀</title>
     </head>
 
     <body>
     <!--Header 영역 -->
-    <header th:replace="fragments/header :: headerFragment"></header>
+    <header th:replace="~{fragments/header :: headerFragment}"></header>
 
     <!--Content 영역 -->
     <th:block layout:fragment="content"></th:block>
