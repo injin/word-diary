@@ -1,10 +1,7 @@
 package project.diary.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -14,6 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "history")
 public class History extends BaseEntity {
@@ -30,7 +28,7 @@ public class History extends BaseEntity {
     private LocalDate targetDate;
     private String description;
 
-    @OneToMany(mappedBy = "history", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "history", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Word> words = new ArrayList<>();
 
     public void addWord(Word word) {
@@ -38,7 +36,7 @@ public class History extends BaseEntity {
         word.setHistory(this);
     }
 
-    public static History createHistory(Member member, LocalDate targetDate, String description, Word... words) {
+    public static History createHistory(Member member, LocalDate targetDate, String description, List<Word> words) {
         History history = new History();
         history.setMember(member);
         history.setTargetDate(targetDate);
@@ -49,6 +47,13 @@ public class History extends BaseEntity {
         history.setCreatedDate(LocalDateTime.now());
         history.setLastModifiedDate(LocalDateTime.now());
         return history;
+    }
+
+    public void updateWords(List<Word> words) {
+        this.words.clear();
+        for (Word word : words) {
+            this.addWord(word);
+        }
     }
 
 }

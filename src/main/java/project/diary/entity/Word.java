@@ -1,14 +1,12 @@
 package project.diary.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@ToString(of = {"id", "name"})
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "word")
 public class Word {
@@ -20,8 +18,12 @@ public class Word {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "history_id")
+
     private History history;
 
     private String name;
 
+    public Word(String name) {
+        this.name = name;
+    }
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/defaultLayout}"
+      layout:fragment="content">
+<body>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">아래의 단어가 떠오른 이유를 알아차려 봅니다.</h3>
+                    <div class="tags are-large is-centered" id="wordList">
+                        <span class="tag">단어</span>
+                        <span class="tag">꽃</span>
+                        <span class="tag">잠</span>
+                    </div>
+
+                    <div style="position:relative">
+                        <nav class="pagination is-rounded pt-6" role="navigation" aria-label="pagination">
+                            <a class="pagination-previous" th:onclick="history.back()">이전</a>
+                            <a class="pagination-next" th:onclick="next()">다음</a>
+                            <ul class="pagination-list">
+                                <li><a class="pagination-link " aria-label="Goto step 1">1</a></li>
+                                <li><a class="pagination-link is-current" aria-label="Goto step 2">2</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 3">3</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</body>
+
+<script>
+
+// 다음
+function next() {
+    location.href = "/diary/step3";
+}
+
+$(function(){
+
+});
+</script>
+</html>

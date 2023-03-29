@@ -27,8 +27,8 @@
                             <a class="pagination-next" th:onclick="next()">다음</a>
                             <ul class="pagination-list">
                                 <li><a class="pagination-link is-current" aria-label="Goto step 1">1</a></li>
-                                <li><a class="pagination-link" aria-label="Goto step 45">2</a></li>
-                                <li><a class="pagination-link" aria-label="Goto step 45">3</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 2">2</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 3">3</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -42,6 +42,8 @@
 
 </body>
 
+</html>
+
 <script>
 // 입력창 엔터
 function onEnterAdd() {
@@ -52,7 +54,6 @@ function onEnterAdd() {
 
 // 단어 입력
 function addWord() {
-
     let targetWord = $('#wordInput').val().trim();
     if (targetWord == null || targetWord.length == 0) {
         alert('단어를 입력해 주세요');
@@ -70,7 +71,29 @@ function deleteWord(thisEl) {
 
 // 다음
 function next() {
+    let wordList = [];
+    $('#wordList > span').each(function(idx, item){
+        wordList.push($(item).text());
+    });
+    if (wordList.length == 0) {
+        alert('단어를 입력해 주세요');
+        return false;
+    }
 
+    $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/diary/step1/save",
+        data: JSON.stringify(wordList),
+        dataType: 'text',
+        success: function (data) {
+            console.log('success');
+            location.href = "/diary/step2";
+        },
+        error: function (e) {
+            console.log('error');
+        }
+    });
 
 }
 
@@ -78,4 +101,3 @@ $(function(){
 
 });
 </script>
-</html>

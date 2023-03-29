@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +41,7 @@ class MemberTest {
                 member,
                 LocalDate.now(),
                 "오늘의 회고",
-                word1, word2);
+                Arrays.asList(word1, word2));
         em.persist(history);
 
     }
