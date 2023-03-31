@@ -22,6 +22,9 @@ public class HistoryService {
     private final HistoryRepository historyRepository;
     private final MemberRepository memberRepository;
 
+    /**
+     * 히스토리 저장
+     */
     @Transactional
     public Long save(Long memberId, List<String> wordStrList) throws Exception {
 
@@ -47,7 +50,41 @@ public class HistoryService {
             historyRepository.save(newHistory);
             return newHistory.getId();
         }
-
     }
+
+
+    /**
+     * 히스토리 단건 조회
+     */
+    public History findTodayHistory(Long memberId) throws Exception {
+
+        Optional<Member> member = memberRepository.findById(memberId);
+        if (member.isEmpty()) {
+            throw new Exception("존재하지 않는 회원입니다.");
+        }
+
+        Optional<History> findHistory = historyRepository.findByMemberAndTargetDate(member.get(), LocalDate.now());
+        if (findHistory.isEmpty()) {
+            throw new Exception("저장된 내역이 없습니다.");
+        }
+        return findHistory.get();
+    }
+
+
+    /**
+     * 히스토리 설명 업데이트
+     */
+    @Transactional
+    public History updateDescription(Long historyId, String description) throws Exception {
+
+        Optional<History> findHistory = historyRepository.findById(historyId);
+        if (findHistory.isEmpty()) {
+            throw new Exception("저장된 내역이 없습니다.");
+        }
+        findHistory.get().setDescription(description);
+        return findHistory.get();
+    }
+    
+    
 
 }

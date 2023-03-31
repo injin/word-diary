@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/defaultLayout}"
+      layout:fragment="content">
+<body>
+
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">떠올랐던 생각과 내일을 위한 말을 남기시겠어요?</h3>
+                    <div class="columns" id="chkCmntButtons">
+                        <div class="column pr-2">
+                            <button class="button is-fullwidth" value="Y" th:onclick="checkComment(this)">네, 남길래요.</button>
+                        </div>
+                        <div class="column pl-2">
+                            <button class="button is-fullwidth" value="N" th:onclick="checkComment(this)">아니요. 이대로 괜찮습니다.</button>
+                        </div>
+                    </div>
+                    <textarea class="textarea is-hidden" id="cmntTextarea" placeholder="내용을 입력해 주세요."></textarea>
+
+                    <div style="position:relative">
+                        <nav class="pagination is-rounded pt-6" role="navigation" aria-label="pagination">
+                            <a class="pagination-previous" th:onclick="history.back()">이전</a>
+                            <a class="pagination-next" th:onclick="'javascript:complete('+${history.id}+')'">완료</a>
+                            <ul class="pagination-list">
+                                <li><a class="pagination-link" aria-label="Goto step 1">1</a></li>
+                                <li><a class="pagination-link" aria-label="Goto step 2">2</a></li>
+                                <li><a class="pagination-link is-current" aria-label="Goto step 3">3</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script th:inline="javascript">
+
+    function checkComment(targetEl) {
+        $('#chkCmntButtons button').removeClass('is-light');
+        $(targetEl).addClass('is-light');
+
+        $('#cmntTextarea').val('');
+        let chkYn = $(targetEl).val();
+        if (chkYn == 'Y') {
+            $('#cmntTextarea').removeClass('is-hidden');
+        } else {
+            $('#cmntTextarea').addClass('is-hidden');
+        }
+    }
+
+    function complete(id) {
+        let desc = $('#cmntTextarea').val();
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/diary/step3/save",
+            data: JSON.stringify({id: id, description: desc}),
+            dataType: 'text',
+            success: function (data) {
+                console.log('success');
+                location.href = "/";
+            },
+            error: function (e) {
+                console.log('error');
+            }
+        });
+    }
+    </script>
+
+</body>
+
+</html>
+
+

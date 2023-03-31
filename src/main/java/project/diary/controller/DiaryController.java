@@ -5,10 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.diary.entity.History;
 import project.diary.service.HistoryService;
 
 import java.util.List;
@@ -29,16 +31,28 @@ public class DiaryController {
     @PostMapping("/step1/save")
     public ResponseEntity<?> saveWords(@RequestBody List<String> wordList) throws Exception {
 
-        System.out.println("파라미터 검증");
-        System.out.println(wordList);
         historyService.save(6L, wordList);
         return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
-
     }
 
     @GetMapping("/step2")
-    public String step2() {
+    public String step2(Model model) throws Exception {
+        model.addAttribute("history", historyService.findTodayHistory(6L));
         return "diary/step2";
     }
+
+    @GetMapping("/step3")
+    public String step3(Model model) throws Exception {
+        model.addAttribute("history", historyService.findTodayHistory(6L));
+        return "diary/step3";
+    }
+
+    @PostMapping("/step3/save")
+    public ResponseEntity<?> saveDescription(@RequestBody HistoryForm form) throws Exception {
+
+        historyService.updateDescription(form.getId(), form.getDescription());
+        return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
+    }
+
 
 }

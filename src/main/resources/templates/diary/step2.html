@@ -9,11 +9,9 @@
         <div class="container">
             <div class="columns is-multiline">
                 <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
-                    <h3 class="title is-4 is-size-4-mobile">아래의 단어가 떠오른 이유를 알아차려 봅니다.</h3>
+                    <h3 class="title is-4 is-size-4-mobile">지금 아래의 단어가 떠오른 상태를 알아차려 봅니다.</h3>
                     <div class="tags are-large is-centered" id="wordList">
-                        <span class="tag">단어</span>
-                        <span class="tag">꽃</span>
-                        <span class="tag">잠</span>
+                        <span class="tag" th:each="word : ${history.words}" th:text="${word.name}"></span>
                     </div>
 
                     <div style="position:relative">
@@ -35,17 +33,15 @@
         </div>
     </section>
 
+    <script th:inline="javascript">
+
+    function next() {
+        location.href = "/diary/step3";
+    }
+
+    </script>
+
 </body>
 
-<script>
 
-// 다음
-function next() {
-    location.href = "/diary/step3";
-}
-
-$(function(){
-
-});
-</script>
 </html>

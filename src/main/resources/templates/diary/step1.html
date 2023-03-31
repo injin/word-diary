@@ -40,64 +40,62 @@
         </div>
     </section>
 
+    <script th:inline="javascript">
+    // 입력창 엔터
+    function onEnterAdd() {
+        if (window.event.keyCode == 13) {
+            addWord();
+        }
+    }
+
+    // 단어 입력
+    function addWord() {
+        let targetWord = $('#wordInput').val().trim();
+        if (targetWord == null || targetWord.length == 0) {
+            alert('단어를 입력해 주세요');
+            return false;
+        }
+        let wordHtml = `<span class="tag">${targetWord}<button class="delete is-small" onclick="deleteWord(this)"></button></span>`;
+        $('#wordList').append(wordHtml);
+        $('#wordInput').val('');
+    }
+
+    // 단어 삭제
+    function deleteWord(thisEl) {
+        $(thisEl).parent().remove();
+    }
+
+    // 다음
+    function next() {
+        let wordList = [];
+        $('#wordList > span').each(function(idx, item){
+            wordList.push($(item).text());
+        });
+        if (wordList.length == 0) {
+            alert('단어를 입력해 주세요');
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: "/diary/step1/save",
+            data: JSON.stringify(wordList),
+            dataType: 'text',
+            success: function (data) {
+                console.log('success');
+                location.href = "/diary/step2";
+            },
+            error: function (e) {
+                console.log('error');
+            }
+        });
+
+    }
+    </script>
+
 </body>
 
 </html>
 
-<script>
-// 입력창 엔터
-function onEnterAdd() {
-    if (window.event.keyCode == 13) {
-        addWord();
-    }
-}
 
-// 단어 입력
-function addWord() {
-    let targetWord = $('#wordInput').val().trim();
-    if (targetWord == null || targetWord.length == 0) {
-        alert('단어를 입력해 주세요');
-        return false;
-    }
-    let wordHtml = `<span class="tag">${targetWord}<button class="delete is-small" onclick="deleteWord(this)"></button></span>`;
-    $('#wordList').append(wordHtml);
-    $('#wordInput').val('');
-}
-
-// 단어 삭제
-function deleteWord(thisEl) {
-    $(thisEl).parent().remove();
-}
-
-// 다음
-function next() {
-    let wordList = [];
-    $('#wordList > span').each(function(idx, item){
-        wordList.push($(item).text());
-    });
-    if (wordList.length == 0) {
-        alert('단어를 입력해 주세요');
-        return false;
-    }
-
-    $.ajax({
-        type: "POST",
-        contentType: "application/json",
-        url: "/diary/step1/save",
-        data: JSON.stringify(wordList),
-        dataType: 'text',
-        success: function (data) {
-            console.log('success');
-            location.href = "/diary/step2";
-        },
-        error: function (e) {
-            console.log('error');
-        }
-    });
-
-}
-
-$(function(){
-
-});
-</script>
