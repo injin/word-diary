@@ -1,7 +1,8 @@
--- 다이어리 테이블
+-- 멤버 테이블
 CREATE TABLE `diary`.`member` (
   `member_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` VARCHAR(255) NULL,
   `created_date` DATETIME NOT NULL,
   `last_modified_date` DATETIME NOT NULL,
@@ -11,7 +12,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_bin;
 
 -- 히스토리 테이블
-CREATE TABLE `history` (
+CREATE TABLE `diary`.history` (
   `history_id` int NOT NULL AUTO_INCREMENT,
   `member_id` int NOT NULL,
   `target_date` date NOT NULL,
@@ -19,7 +20,10 @@ CREATE TABLE `history` (
   `created_date` datetime NOT NULL,
   `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`history_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_bin;
 
 -- 단어 테이블
 CREATE TABLE `diary`.`word` (

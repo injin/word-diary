@@ -44,8 +44,6 @@ public class History extends BaseEntity {
         for (Word word : words) {
             history.addWord(word);
         }
-        history.setCreatedDate(LocalDateTime.now());
-        history.setLastModifiedDate(LocalDateTime.now());
         return history;
     }
 

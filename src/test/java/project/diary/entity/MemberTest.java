@@ -26,10 +26,9 @@ class MemberTest {
     public void testEntity() {
 
         Member member = new Member();
-        member.setName("member5");
-        member.setEmail("member5@gmail.com");
-        member.setCreatedDate(LocalDateTime.now());
-        member.setLastModifiedDate(LocalDateTime.now());
+        member.setName("member6");
+        member.setEmail("member6@gmail.com");
+        member.setPassword("1234");
         em.persist(member);
 
         Word word1 = new Word();
