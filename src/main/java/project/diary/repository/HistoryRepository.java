@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface HistoryRepository extends JpaRepository<History, Long> {
 
     @EntityGraph(attributePaths = {"words"})
-    public Optional<History> findByMemberAndTargetDate(Member member, LocalDate targetDate);
+    Optional<History> findByMemberAndTargetDate(Member member, LocalDate targetDate);
 
 }

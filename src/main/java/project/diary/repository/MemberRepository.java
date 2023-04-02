@@ -5,4 +5,6 @@ import project.diary.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
+    boolean existsMemberByEmail(String email);
+
 }
