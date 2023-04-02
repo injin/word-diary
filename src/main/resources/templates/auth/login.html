@@ -5,12 +5,54 @@
       layout:fragment="content">
 <body>
 
-    <h1>로그인 화면</h1>
+<section class="section">
+    <div class="container">
+        <div class="columns is-multiline">
+            <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
+                <h3 class="title is-4 is-size-4-mobile">로그인</h3>
 
-    <script th:inline="javascript">
+                <form role="form" action="/login" method="post">
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input class="input" type="email" name="email" placeholder="이메일을 입력하세요">
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="control has-icons-left">
+                            <input class="input" type="password" name="password" placeholder="비밀번호를 입력하세요">
+                            <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        </div>
+                    </div>
+
+                    <article class="message is-danger" th:if="${error}">
+                        <div class="message-body">
+                            <span th:text="${exception}">에러 메시지</span>
+                        </div>
+                    </article>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link">로그인</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script th:inline="javascript">
 
 
-    </script>
+</script>
 
 </body>
 

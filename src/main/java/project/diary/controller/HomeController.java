@@ -7,10 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.diary.auth.CheckEmailValidator;
 import project.diary.service.MemberService;
 
@@ -36,7 +33,6 @@ public class HomeController {
     @GetMapping("/join")
     public String join(Model model) {
         model.addAttribute("memberForm", new MemberForm());
-
         return "auth/join";
     }
 
@@ -46,14 +42,18 @@ public class HomeController {
         if (result.hasErrors()) {
             return "auth/join";
         }
-        System.out.println("memberForm = " + form);
         memberService.join(form.getName(), form.getPassword(), form.getEmail());
-
         return "redirect:/";
     }
 
-    @GetMapping
-    public String login() {
+    @GetMapping("/login")
+    public String login(@RequestParam(value = "error", required = false) String error,
+                        @RequestParam(value = "exception", required = false) String exception,
+                        Model model) {
+
+        model.addAttribute("error", error);
+        model.addAttribute("exception", exception);
+
         return "auth/login";
     }
 
