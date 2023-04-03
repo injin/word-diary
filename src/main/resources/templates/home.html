@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="~{fragments/defaultLayout}"
       layout:fragment="content">
+
 <body>
 <div>
-    <!--<div class="columns is-multiline"></div>-->
     <section class="section home_section">
         <div class="container">
             <div class="columns is-multiline">
@@ -13,7 +14,8 @@
                     <h2 class="mb-4 is-size-1 is-size-3-mobile has-text-weight-bold">단어 일기장 서비스</h2>
                     <p class="subtitle mb-5">오늘 마음에 떠오른 단어를 기록하고 명상하세요. 단어 일기장이 도와드립니다.</p>
                     <div class="buttons is-centered">
-                        <button class="button is-primary is-medium mt-6" th:onclick="start()">시작하기</button>
+                        <button class="button is-primary is-medium mt-6" th:onclick="start()" sec:authorize="isAuthenticated()">시작하기</button>
+                        <button class="button is-primary is-medium mt-6" th:onclick="alertLogin()" sec:authorize="isAnonymous()">시작하기</button>
                     </div>
                 </div>
             </div>

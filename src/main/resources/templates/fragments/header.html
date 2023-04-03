@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="headerFragment">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="headerFragment">
 <nav class="navbar py-4">
   <div class="container is-fluid">
     <div class="navbar-brand">
@@ -14,18 +16,24 @@
     </div>
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" href="#">일기쓰기</a>
-        <a class="navbar-item" href="#">MY 일기</a>
+        <a class="navbar-item" href="/diary/step1" sec:authorize="isAuthenticated()">일기쓰기</a>
+        <a class="navbar-item" href="#" sec:authorize="isAuthenticated()">MY 일기</a>
+
+        <a class="navbar-item" th:onclick="alertLogin()" sec:authorize="isAnonymous()">일기쓰기</a>
+        <a class="navbar-item" th:onclick="alertLogin()" sec:authorize="isAnonymous()">MY 일기</a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary" href="/join">
+            <a class="button is-primary" href="/join" sec:authorize="isAnonymous()">
               <strong>회원가입</strong>
             </a>
-            <a class="button is-light" href="/login">
+            <a class="button is-light" href="/login" sec:authorize="isAnonymous()">
               로그인
+            </a>
+            <a class="button is-light" href="/logout" sec:authorize="isAuthenticated()">
+              로그아웃
             </a>
           </div>
         </div>
