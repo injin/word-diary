@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import project.diary.auth.PrincipalDetails;
 import project.diary.entity.History;
 import project.diary.service.HistoryService;
 
@@ -29,21 +31,25 @@ public class DiaryController {
     }
 
     @PostMapping("/step1/save")
-    public ResponseEntity<?> saveWords(@RequestBody List<String> wordList) throws Exception {
+    public ResponseEntity<?> saveWords(@RequestBody List<String> wordList,
+                                       @AuthenticationPrincipal PrincipalDetails customUser) throws Exception {
 
-        historyService.save(6L, wordList);
+        Long memberId = customUser.getMember().getId();
+        historyService.save(memberId, wordList);
         return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
     }
 
     @GetMapping("/step2")
-    public String step2(Model model) throws Exception {
-        model.addAttribute("history", historyService.findTodayHistory(6L));
+    public String step2(@AuthenticationPrincipal PrincipalDetails customUser, Model model) throws Exception {
+        Long memberId = customUser.getMember().getId();
+        model.addAttribute("history", historyService.findTodayHistory(memberId));
         return "diary/step2";
     }
 
     @GetMapping("/step3")
-    public String step3(Model model) throws Exception {
-        model.addAttribute("history", historyService.findTodayHistory(6L));
+    public String step3(@AuthenticationPrincipal PrincipalDetails customUser, Model model) throws Exception {
+        Long memberId = customUser.getMember().getId();
+        model.addAttribute("history", historyService.findTodayHistory(memberId));
         return "diary/step3";
     }
 
