@@ -1,3 +1,6 @@
+-- 스키마
+CREATE SCHEMA `diary` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
+
 -- 멤버 테이블
 CREATE TABLE `diary`.`member` (
   `member_id` INT NOT NULL AUTO_INCREMENT,
@@ -12,7 +15,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_bin;
 
 -- 히스토리 테이블
-CREATE TABLE `diary`.history` (
+CREATE TABLE `diary`.`history` (
   `history_id` int NOT NULL AUTO_INCREMENT,
   `member_id` int NOT NULL,
   `target_date` date NOT NULL,

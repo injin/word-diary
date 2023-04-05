@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://${rds.hostname}:${rds.port}/${rds.schema.name}?serverTimezone=UTC&characterEncoding=UTF-8
+    username: ${rds.username}
+    password: ${rds.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 5000
