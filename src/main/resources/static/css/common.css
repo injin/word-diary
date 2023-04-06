@@ -1,8 +1,13 @@
+/* === 공통 === */
 body {
     background-color: #F8F9FD;
     min-height: 600px;
 }
-/* 메인화면 */
+.navbar-item img {
+    max-height: 2.5rem;
+}
+
+/* === 홈화면 === */
 .home_section h2 {
     color: #12494c !important;
 }
@@ -11,7 +16,6 @@ body {
 }
 .meditation_img_box {
     background-image: url(/img/meditation.png);
-    /*background-position: center center;*/
     background-repeat: no-repeat;
     background-size: cover;
 	/*height: 500px;*/
