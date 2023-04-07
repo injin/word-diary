@@ -1,20 +1,21 @@
 package project.diary.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import project.diary.auth.PrincipalDetails;
+import project.diary.dto.HistoryDto;
 import project.diary.entity.History;
 import project.diary.service.HistoryService;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -63,6 +64,15 @@ public class DiaryController {
     @GetMapping("/mydiary")
     public String mydiary() {
         return "diary/mydiary";
+    }
+
+    @GetMapping("/mydiary/get")
+    public ResponseEntity<List<HistoryDto>> getHistory(@RequestParam Integer searchYear,
+                                        @RequestParam Integer searchMonth,
+                                        @AuthenticationPrincipal PrincipalDetails customUser) throws Exception {
+
+        List<HistoryDto> historyList = historyService.listHistoryByPeriod(customUser.getMember().getId(), searchYear, searchMonth);
+        return ResponseEntity.status(HttpStatus.OK).body(historyList);
     }
 
 

@@ -7,7 +7,7 @@
 
 ### 1.1 사용 기술
 
-`Java` , `SpringBoot` , `Spring Data JPA` , `Thymeleaf` ,  `MySQL` , `ElasticBeanstalk`
+`Java` , `SpringBoot` , `Spring Data JPA` , `Thymeleaf` ,  `MySQL` , `AWS ElasticBeanstalk`
 
 ### 1.2 주요 화면
 

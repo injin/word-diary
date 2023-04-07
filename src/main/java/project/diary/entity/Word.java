@@ -18,7 +18,6 @@ public class Word {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "history_id")
-
     private History history;
 
     private String name;

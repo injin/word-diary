@@ -1,18 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/defaultLayout}"
-      layout:fragment="content">
+      layout:decorate="~{fragments/defaultLayout}">
 <body>
-
 <div layout:fragment="content">
     <section class="section">
         <div class="container">
-            <div class="columns is-multiline">
-                <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
+            <div class="columns">
+                <div class="column p-6 mx-auto is-12 box">
                     <h3 class="title is-4 is-size-4-mobile">MY일기</h3>
-
-
+                    <div id="calendar" style="height: 600px;"></div>
                 </div>
             </div>
 
@@ -20,17 +17,57 @@
     </section>
 </div>
     <script th:inline="javascript" layout:fragment="script">
+    var calendar;
 
-    function getHistoryList() {
+    $(function(){
+        // 캘린더 초기화
+        const Calendar = tui.Calendar;
+        const container = document.getElementById('calendar');
+        const options = {
+          usageStatistics: false,
+          defaultView: 'month',
+          isReadOnly: true,
+          calendars: [
+            {
+              id: 'mydiary',
+              name: 'word-diary',
+              backgroundColor: '#03bd9e',
+            }
+          ],
+        };
+        calendar = new Calendar(container, options);
+
+        // 오늘 날짜 조회
+        const today = new Date();
+        getHistoryList(today.getFullYear(), (today.getMonth()+1));
+
+    });
+
+    function getHistoryList(year, month) {
         $.ajax({
             type: "GET",
-            contentType: "application/json",
-            url: "/diary/mydiary/list",
-            data: JSON.stringify({id: id, description: desc}),
-            dataType: 'text',
+            url: "/diary/mydiary/get",
+            data: { searchYear: year, searchMonth: month },
+            dataType: 'json',
             success: function (data) {
-                console.log('success');
-                console.log(data);
+                let events = [];
+                calendar.clear();
+                data.forEach((history, hIdx) => {
+                    history.words.forEach((word, wIdx) => {
+                        events.push({
+                            id: word.wordId,
+                            calendarId: 'mydiary',
+                            title: word.name,
+                            category: 'allday',
+                            isAllDay: true,
+                            start: history.targetDate,
+                            end: history.targetDate,
+                        });
+                    });
+                });
+
+                calendar.createEvents(events);
+
             },
             error: function (e) {
                 console.log('error');

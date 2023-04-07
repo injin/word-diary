@@ -3,6 +3,7 @@ package project.diary.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.diary.dto.HistoryDto;
 import project.diary.entity.History;
 import project.diary.entity.Member;
 import project.diary.entity.Word;
@@ -10,9 +11,11 @@ import project.diary.repository.HistoryRepository;
 import project.diary.repository.MemberRepository;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -83,6 +86,21 @@ public class HistoryService {
         }
         findHistory.get().setDescription(description);
         return findHistory.get();
+    }
+
+
+    public List<HistoryDto> listHistoryByPeriod(Long memberId, int searchYear, int searchMonth) throws Exception {
+
+        Optional<Member> findMember = memberRepository.findById(memberId);
+        if (findMember.isEmpty()) {
+            throw new Exception("존재하지 않는 회원입니다.");
+        }
+
+        YearMonth yearMonth = YearMonth.of(searchYear, searchMonth);
+        LocalDate start = yearMonth.atDay(1);
+        LocalDate end = yearMonth.atEndOfMonth();
+        List<History> historyList = historyRepository.findByMemberAndTargetDateBetween(findMember.get(), start, end);
+        return historyList.stream().map(HistoryDto::new).collect(Collectors.toList());
     }
     
     
