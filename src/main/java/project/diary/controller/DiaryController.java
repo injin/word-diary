@@ -60,5 +60,12 @@ public class DiaryController {
         return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
     }
 
+    @GetMapping("/mydiary")
+    public String mydiary() {
+        return "diary/mydiary";
+    }
+
+
+
 
 }

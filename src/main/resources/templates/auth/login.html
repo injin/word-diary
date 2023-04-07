@@ -1,55 +1,56 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/defaultLayout}"
-      layout:fragment="content">
+      layout:decorate="~{fragments/defaultLayout}">
 <body>
 
-<section class="section">
-    <div class="container">
-        <div class="columns is-multiline">
-            <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
-                <h3 class="title is-4 is-size-4-mobile">로그인</h3>
+<div layout:fragment="content">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">로그인</h3>
 
-                <form role="form" action="/login" method="post">
-                    <div class="field">
-                        <div class="control has-icons-left">
-                            <input class="input" type="email" name="email" placeholder="이메일을 입력하세요">
-                            <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
+                    <form role="form" action="/login" method="post">
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input class="input" type="email" name="email" placeholder="이메일을 입력하세요">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="field">
-                        <div class="control has-icons-left">
-                            <input class="input" type="password" name="password" placeholder="비밀번호를 입력하세요">
-                            <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
+                        <div class="field">
+                            <div class="control has-icons-left">
+                                <input class="input" type="password" name="password" placeholder="비밀번호를 입력하세요">
+                                <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            </div>
                         </div>
-                    </div>
 
-                    <article class="message is-danger" th:if="${error}">
-                        <div class="message-body">
-                            <span th:text="${exception}">에러 메시지</span>
+                        <article class="message is-danger" th:if="${error}">
+                            <div class="message-body">
+                                <span th:text="${exception}">에러 메시지</span>
+                            </div>
+                        </article>
+
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button type="submit" class="button is-link">로그인</button>
+                            </div>
                         </div>
-                    </article>
 
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button type="submit" class="button is-link">로그인</button>
-                        </div>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
+    </section>
+</div>
 
-    </div>
-</section>
-
-<script th:inline="javascript">
+<script th:inline="javascript" layout:fragment="script">
 
 
 </script>

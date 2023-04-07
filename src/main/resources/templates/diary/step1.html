@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/defaultLayout}"
-      layout:fragment="content">
+      layout:decorate="~{fragments/defaultLayout}">
 <body>
 
+<div layout:fragment="content">
     <section class="section">
         <div class="container">
             <div class="columns is-multiline">
@@ -39,8 +39,8 @@
 
         </div>
     </section>
-
-    <script th:inline="javascript">
+</div>
+    <script th:inline="javascript" layout:fragment="script">
     // 입력창 엔터
     function onEnterAdd() {
         if (window.event.keyCode == 13) {

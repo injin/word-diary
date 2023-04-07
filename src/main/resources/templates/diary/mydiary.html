@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/defaultLayout}"
+      layout:fragment="content">
+<body>
+
+<div layout:fragment="content">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">MY일기</h3>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+    <script th:inline="javascript" layout:fragment="script">
+
+    function getHistoryList() {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "/diary/mydiary/list",
+            data: JSON.stringify({id: id, description: desc}),
+            dataType: 'text',
+            success: function (data) {
+                console.log('success');
+                console.log(data);
+            },
+            error: function (e) {
+                console.log('error');
+            }
+        });
+    }
+    </script>
+
+</body>
+
+</html>
+
+

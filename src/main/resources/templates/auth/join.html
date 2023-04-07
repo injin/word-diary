@@ -1,68 +1,68 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/defaultLayout}"
-      layout:fragment="content">
+      layout:decorate="~{fragments/defaultLayout}">
 <body>
 
-<section class="section">
-    <div class="container">
-        <div class="columns is-multiline">
-            <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
-                <h3 class="title is-4 is-size-4-mobile">회원가입</h3>
+<div layout:fragment="content">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">회원가입</h3>
 
-                <form role="form" action="/join" th:object="${memberForm}" method="post">
-                <div class="field">
-                    <label class="label">이름</label>
-                    <div class="control">
-                        <input th:class="${#fields.hasErrors('name')}? 'input is-danger' : 'input'"
-                               type="text" th:field="*{name}" placeholder="이름을 입력하세요">
+                    <form role="form" action="/join" th:object="${memberForm}" method="post">
+                    <div class="field">
+                        <label class="label">이름</label>
+                        <div class="control">
+                            <input th:class="${#fields.hasErrors('name')}? 'input is-danger' : 'input'"
+                                   type="text" th:field="*{name}" placeholder="이름을 입력하세요">
+                        </div>
+                        <p class="help is-danger" th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}">This email is invalid</p>
                     </div>
-                    <p class="help is-danger" th:if="${#fields.hasErrors('name')}"
-                       th:errors="*{name}">This email is invalid</p>
-                </div>
 
-                <div class="field">
-                    <label class="label">이메일</label>
-                    <div class="control has-icons-left">
-                        <input th:class="${#fields.hasErrors('email')}? 'input is-danger' : 'input'"
-                               type="email" th:field="*{email}" placeholder="이메일을 입력하세요">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-envelope"></i>
-                        </span>
+                    <div class="field">
+                        <label class="label">이메일</label>
+                        <div class="control has-icons-left">
+                            <input th:class="${#fields.hasErrors('email')}? 'input is-danger' : 'input'"
+                                   type="email" th:field="*{email}" placeholder="이메일을 입력하세요">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                        </div>
+                        <p class="help is-danger" th:if="${#fields.hasErrors('email')}"
+                           th:errors="*{email}">This email is invalid</p>
                     </div>
-                    <p class="help is-danger" th:if="${#fields.hasErrors('email')}"
-                       th:errors="*{email}">This email is invalid</p>
-                </div>
 
-                <div class="field">
-                    <label class="label">비밀번호</label>
-                    <div class="control has-icons-left">
-                        <input th:class="${#fields.hasErrors('password')}? 'input is-danger' : 'input'"
-                               type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요">
-                        <span class="icon is-small is-left">
-                            <i class="fas fa-lock"></i>
-                        </span>
+                    <div class="field">
+                        <label class="label">비밀번호</label>
+                        <div class="control has-icons-left">
+                            <input th:class="${#fields.hasErrors('password')}? 'input is-danger' : 'input'"
+                                   type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </div>
+                        <p class="help is-danger" th:if="${#fields.hasErrors('password')}"
+                           th:errors="*{password}">This email is invalid</p>
                     </div>
-                    <p class="help is-danger" th:if="${#fields.hasErrors('password')}"
-                       th:errors="*{password}">This email is invalid</p>
-                </div>
 
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button type="submit" class="button is-link">완료</button>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button type="submit" class="button is-link">완료</button>
+                        </div>
                     </div>
-                </div>
 
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
+    </section>
+</div>
 
-    </div>
-</section>
-
-
-<script th:inline="javascript">
+<script th:inline="javascript" layout:fragment="script">
 
 
 </script>

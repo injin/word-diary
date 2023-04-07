@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      layout:decorate="~{fragments/defaultLayout}"
-      layout:fragment="content">
+      layout:decorate="~{fragments/defaultLayout}">
 
 <body>
-<div>
+<div layout:fragment="content">
     <section class="section home_section">
         <div class="container">
             <div class="columns is-multiline">
@@ -24,9 +23,8 @@
     </section>
 
 </div>
-</body>
 
-<script th:inline="javascript">
+<script th:inline="javascript" layout:fragment="script">
 
     function start() {
         location.href = "/diary/step1";
@@ -34,4 +32,5 @@
 
 </script>
 
+</body>
 </html>
