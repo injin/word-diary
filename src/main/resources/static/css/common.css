@@ -1,10 +1,13 @@
 /* === 공통 === */
 body {
     background-color: #F8F9FD;
-    min-height: 600px;
+    min-height: 700px;
 }
 .navbar-item img {
     max-height: 2.5rem;
+}
+.wrap {
+    min-height: 500x;
 }
 
 /* === 홈화면 === */

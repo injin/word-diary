@@ -7,11 +7,17 @@
     <head th:replace="~{fragments/config :: configFragment}"></head>
 
     <body>
+
+
     <!--Header 영역 -->
     <header th:replace="~{fragments/header :: headerFragment}"></header>
-
     <!--Content 영역 -->
+    <div class="wrap">
     <th:block layout:fragment="content"></th:block>
+    </div>
+    <!-- Footer 영역 -->
+    <footer th:replace="~{fragments/footer :: footerFragment}"></footer>
+
 
     </body>
 </html>
