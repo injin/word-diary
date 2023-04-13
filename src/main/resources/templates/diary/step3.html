@@ -20,7 +20,7 @@
                     </div>
                     <textarea class="textarea is-hidden" id="cmntTextarea" placeholder="내용을 입력해 주세요."></textarea>
 
-                    <div style="position:relative">
+                    <div>
                         <nav class="pagination is-rounded pt-6" role="navigation" aria-label="pagination">
                             <a class="pagination-previous" th:onclick="history.back()">이전</a>
                             <a class="pagination-next" th:onclick="'javascript:complete('+${history.id}+')'">완료</a>

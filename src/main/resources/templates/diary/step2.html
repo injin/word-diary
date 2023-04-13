@@ -13,7 +13,7 @@
                         <span class="tag" th:each="word : ${history.words}" th:text="${word.name}"></span>
                     </div>
 
-                    <div style="position:relative">
+                    <div>
                         <nav class="pagination is-rounded pt-6" role="navigation" aria-label="pagination">
                             <a class="pagination-previous" th:onclick="history.back()">이전</a>
                             <a class="pagination-next" th:onclick="next()">다음</a>
