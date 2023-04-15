@@ -82,8 +82,7 @@
             url: "/diary/step1/save",
             data: JSON.stringify(wordList),
             dataType: 'text',
-            success: function (data) {
-                console.log('success');
+            success: function (res) {
                 location.href = "/diary/step2";
             },
             error: function (e) {

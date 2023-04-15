@@ -62,8 +62,7 @@
             url: "/diary/step3/save",
             data: JSON.stringify({id: id, description: desc}),
             dataType: 'text',
-            success: function (data) {
-                console.log('success');
+            success: function (res) {
                 location.href = "/";
             },
             error: function (e) {

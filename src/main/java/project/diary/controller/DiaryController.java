@@ -1,21 +1,18 @@
 package project.diary.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import project.diary.advice.Response;
 import project.diary.auth.PrincipalDetails;
 import project.diary.dto.HistoryDto;
-import project.diary.entity.History;
 import project.diary.service.HistoryService;
 
-import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,6 +22,7 @@ import java.util.List;
 public class DiaryController {
 
     private final HistoryService historyService;
+    private final Response response;
 
     @GetMapping("/step1")
     public String step1() {
@@ -37,7 +35,7 @@ public class DiaryController {
 
         Long memberId = customUser.getMember().getId();
         historyService.save(memberId, wordList);
-        return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
+        return response.success("성공입니다.");
     }
 
     @GetMapping("/step2")
@@ -58,7 +56,7 @@ public class DiaryController {
     public ResponseEntity<?> saveDescription(@RequestBody HistoryForm form) throws Exception {
 
         historyService.updateDescription(form.getId(), form.getDescription());
-        return ResponseEntity.status(HttpStatus.OK).body("성공입니다");
+        return response.success("성공입니다");
     }
 
     @GetMapping("/mydiary")
@@ -67,12 +65,12 @@ public class DiaryController {
     }
 
     @GetMapping("/mydiary/get")
-    public ResponseEntity<List<HistoryDto>> getHistory(@RequestParam Integer searchYear,
+    public ResponseEntity<?> getHistory(@RequestParam Integer searchYear,
                                         @RequestParam Integer searchMonth,
                                         @AuthenticationPrincipal PrincipalDetails customUser) throws Exception {
 
         List<HistoryDto> historyList = historyService.listHistoryByPeriod(customUser.getMember().getId(), searchYear, searchMonth);
-        return ResponseEntity.status(HttpStatus.OK).body(historyList);
+        return response.success(historyList);
     }
 
 

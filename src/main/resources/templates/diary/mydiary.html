@@ -77,12 +77,12 @@
             url: "/diary/mydiary/get",
             data: { searchYear: year, searchMonth: month },
             dataType: 'json',
-            success: function (data) {
+            success: function (res) {
                 let events = [];
                 calendar.clear();
                 $('#calTitle').text('');
 
-                data.forEach((history, hIdx) => {
+                res.data.forEach((history, hIdx) => {
                     history.words.forEach((word, wIdx) => {
                         events.push({
                             id: word.wordId,
