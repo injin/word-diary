@@ -66,7 +66,6 @@
     });
 
     function turnOverCalendar(month) {
-        targetDate.setDate(1);
         targetDate.setMonth(targetDate.getMonth()+month);
         getHistoryList(targetDate.getFullYear(), (targetDate.getMonth()+1));
     }
@@ -78,6 +77,11 @@
             data: { searchYear: year, searchMonth: month },
             dataType: 'json',
             success: function (res) {
+
+                if (res.result == 'fail') {
+                    return false;
+                }
+
                 let events = [];
                 calendar.clear();
                 $('#calTitle').text('');

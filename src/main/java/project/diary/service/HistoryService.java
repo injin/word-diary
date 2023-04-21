@@ -3,10 +3,12 @@ package project.diary.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.diary.advice.Response;
 import project.diary.dto.HistoryDto;
 import project.diary.entity.History;
 import project.diary.entity.Member;
 import project.diary.entity.Word;
+import project.diary.error.ApiException;
 import project.diary.repository.HistoryRepository;
 import project.diary.repository.MemberRepository;
 
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class HistoryService {
 
+    private final Response response;
     private final HistoryRepository historyRepository;
     private final MemberRepository memberRepository;
 
@@ -33,7 +36,7 @@ public class HistoryService {
 
         Optional<Member> member = memberRepository.findById(memberId);
         if (member.isEmpty()) {
-            throw new Exception("존재하지 않는 회원입니다.");
+            throw new ApiException("존재하지 않는 회원입니다.");
         }
 
         List<Word> words = new ArrayList<>();
@@ -63,12 +66,12 @@ public class HistoryService {
 
         Optional<Member> member = memberRepository.findById(memberId);
         if (member.isEmpty()) {
-            throw new Exception("존재하지 않는 회원입니다.");
+            throw new ApiException("존재하지 않는 회원입니다.");
         }
 
         Optional<History> findHistory = historyRepository.findByMemberAndTargetDate(member.get(), LocalDate.now());
         if (findHistory.isEmpty()) {
-            throw new Exception("저장된 내역이 없습니다.");
+            throw new ApiException("저장된 내역이 없습니다.");
         }
         return findHistory.get();
     }
@@ -82,18 +85,21 @@ public class HistoryService {
 
         Optional<History> findHistory = historyRepository.findById(historyId);
         if (findHistory.isEmpty()) {
-            throw new Exception("저장된 내역이 없습니다.");
+            throw new ApiException("저장된 내역이 없습니다.");
         }
         findHistory.get().setDescription(description);
         return findHistory.get();
     }
 
 
+    /**
+     * 월별 히스토리 내역 조회
+     */
     public List<HistoryDto> listHistoryByPeriod(Long memberId, int searchYear, int searchMonth) throws Exception {
 
         Optional<Member> findMember = memberRepository.findById(memberId);
         if (findMember.isEmpty()) {
-            throw new Exception("존재하지 않는 회원입니다.");
+            throw new ApiException("존재하지 않는 회원입니다.");
         }
 
         YearMonth yearMonth = YearMonth.of(searchYear, searchMonth);
