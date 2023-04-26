@@ -7,9 +7,11 @@ CREATE TABLE `diary`.`member` (
   `name` VARCHAR(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `email` VARCHAR(255) NULL,
+  `status` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   `created_date` DATETIME NOT NULL,
   `last_modified_date` DATETIME NOT NULL,
-  PRIMARY KEY (`member_id`))
+  PRIMARY KEY (`member_id`)),
+  UNIQUE KEY `email_UNIQUE` (`email`)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_bin;

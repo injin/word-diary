@@ -23,11 +23,15 @@ public class Member extends BaseEntity {
     private String name;
     private String password;
     private String email;
+    @Enumerated(EnumType.STRING)
+    private MemberStatus status;
+
 
     public Member(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
+        this.status = MemberStatus.JOINED;
     }
 
 }
