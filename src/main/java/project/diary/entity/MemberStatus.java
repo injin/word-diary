@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum MemberStatus {
 
-    TRYNG(0, "가입중"),
+    PENDING(0, "가입중"),
     JOINED(1, "가입완료"),
     WITHDRAW(2, "탈퇴");
     

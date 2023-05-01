@@ -11,10 +11,17 @@ CREATE TABLE `diary`.`member` (
   `created_date` DATETIME NOT NULL,
   `last_modified_date` DATETIME NOT NULL,
   PRIMARY KEY (`member_id`)),
-  UNIQUE KEY `email_UNIQUE` (`email`)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_bin;
+  UNIQUE KEY `email_UNIQUE` (`email`);
+
+-- 이메일 인증 테이블
+CREATE TABLE `diary`.`confirm_email` (
+  `confirm_email_id` INT NOT NULL,
+  `member_id` INT NOT NULL,
+  `date_expired` DATETIME NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `security_key` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`confirm_email_id`)
+);
 
 -- 히스토리 테이블
 CREATE TABLE `diary`.`history` (
@@ -25,10 +32,7 @@ CREATE TABLE `diary`.`history` (
   `created_date` datetime NOT NULL,
   `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`history_id`)
-)
-ENGINE=InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_bin;
+);
 
 -- 단어 테이블
 CREATE TABLE `diary`.`word` (
@@ -41,7 +45,5 @@ CREATE TABLE `diary`.`word` (
     FOREIGN KEY (`history_id`)
     REFERENCES `diary`.`history` (`history_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_bin;
+    ON UPDATE NO ACTION
+);
