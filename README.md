@@ -3,7 +3,7 @@
 ## 1. 개요
 
 - 매일 마음에 떠오른 단어를 기록하는 앱
-- 서비스 주소 : [http://worddiary-env.eba-dm5ui783.ap-northeast-2.elasticbeanstalk.com/](http://worddiary-env.eba-dm5ui783.ap-northeast-2.elasticbeanstalk.com/)
+- 서비스 주소 : [www.word-diary.com](www.word-diary.com)
 
 ### 1.1 사용 기술
 
@@ -38,6 +38,7 @@
   `/var/log/web.stdout.log`  
   `/var/log/eb-engine.log` 
 - 앱 서버 다시 시작. 서비스 확인.
+- 도메인 구입. 레코드 추가. Route53을 사용해 EB를 지정한다면 별칭을 사용할 것. 레코드 유형은 A-IPv4
 
 ### 2.2 주의
 
