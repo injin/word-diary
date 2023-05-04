@@ -3,7 +3,7 @@
 ## 1. 개요
 
 - 매일 마음에 떠오른 단어를 기록하는 앱
-- 서비스 주소 : [www.word-diary.com](www.word-diary.com)
+- 서비스 주소 : [word-diary.com](www.word-diary.com)
 
 ### 1.1 사용 기술
 
@@ -39,14 +39,10 @@
   `/var/log/eb-engine.log` 
 - 앱 서버 다시 시작. 서비스 확인.
 - 도메인 구입. 레코드 추가. Route53을 사용해 EB를 지정한다면 별칭을 사용할 것. 레코드 유형은 A-IPv4
+- SSL 인증서(ACM) 적용. 기존 HTTP80 리스너는 HTTPS443으로 리다이렉트
+
 
 ### 2.2 주의
-
 - default VPC, default subnet 절대 삭제하지 말자. default subnet 없으면 EB 구성 시 오류 발생. 콘솔에서 다시 생성할 수도 없다.
 
 ---
-
-## ○ 향후 과제
-- 위험 단어 (자살, 마약 등) 알람 기능 기획, 개발
-- 회원가입 시 이메일 인증 : 작업중
-- CSR 방식 전환
