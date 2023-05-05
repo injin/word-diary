@@ -3,7 +3,7 @@
 ## 1. 개요
 
 - 매일 마음에 떠오른 단어를 기록하는 앱
-- 서비스 주소 : [word-diary.com](www.word-diary.com)
+- 서비스 주소 : [word-diary.com](https://word-diary.com)
 
 ### 1.1 사용 기술
 
