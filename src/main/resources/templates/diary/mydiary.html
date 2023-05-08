@@ -65,8 +65,8 @@
 
     });
 
-    function turnOverCalendar(month) {
-        targetDate.setMonth(targetDate.getMonth()+month);
+    function turnOverCalendar(offset) {
+        targetDate.setMonth(targetDate.getMonth()+offset);
         getHistoryList(targetDate.getFullYear(), (targetDate.getMonth()+1));
     }
 
@@ -101,8 +101,8 @@
                 });
 
                 calendar.createEvents(events);
+                calendar.setDate(targetDate);
                 $('#calTitle').text(`${year}년 ${month}월`);
-
             },
             error: function (e) {
                 console.log('error');
