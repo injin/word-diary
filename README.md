@@ -43,6 +43,7 @@
 
 
 ### 2.2 주의
-- default VPC, default subnet 절대 삭제하지 말자. default subnet 없으면 EB 구성 시 오류 발생. 콘솔에서 다시 생성할 수도 없다.
+- default VPC, default subnet 절대 삭제하지 말자. default subnet 없으면 EB 구성 시 오류 발생. 콘솔에서 다시 생성할 수 없어 CLI를 쓰거나 SupportCase 등록 필요.
+- [CLI를 이용한 default VPC 생성 방법](https://docs.aws.amazon.com/vpc/latest/userguide/default-vpc.html#create-default-vpc)
 
 ---
