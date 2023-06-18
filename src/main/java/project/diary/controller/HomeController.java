@@ -6,14 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import project.diary.auth.CheckEmailValidator;
 import project.diary.service.MemberService;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class HomeController {
 
     private final CheckEmailValidator checkEmailValidator;
@@ -36,13 +37,31 @@ public class HomeController {
     }
 
     @PostMapping("/join")
-    public String join(@Valid MemberForm form, BindingResult result) {
+    public String join(@Valid MemberForm form, BindingResult result, Errors errors) {
 
         if (result.hasErrors()) {
             return "auth/join";
         }
-        memberService.join(form.getName(), form.getPassword(), form.getEmail());
-        return "redirect:/";
+
+        boolean joinResult = memberService.join(form.getName(), form.getPassword(), form.getEmail());
+        if (!joinResult) {
+            errors.reject("가입 오류 발생", "가입 처리 과정에서 오류가 발생하였습니다.");
+        }
+
+        return "redirect:/auth/confirmGuide";
+    }
+
+    @GetMapping("/auth/confirmGuide")
+    public void confirmGuide() { }
+
+    @GetMapping("/auth/confirmJoinEmail")
+    public void confirmJoinEmail(@RequestParam Long memberId,
+                                 @RequestParam Long confirmId,
+                                 @RequestParam String key,
+                                 Model model) {
+
+        boolean result = memberService.confirmEmail(memberId, confirmId, key);
+        model.addAttribute("result", result);
     }
 
     @GetMapping("/login")
@@ -52,7 +71,6 @@ public class HomeController {
 
         model.addAttribute("error", error);
         model.addAttribute("exception", exception);
-
         return "auth/login";
     }
 

@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'org.projectlombok:lombok:1.18.20'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
@@ -37,6 +38,10 @@ dependencies {
 	annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
 	annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 	annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+	// AWS 추가
+	implementation platform('software.amazon.awssdk:bom:2.17.230')
+	implementation 'software.amazon.awssdk:ses'
 
 	// Security 추가
 	implementation 'org.springframework.boot:spring-boot-starter-security'

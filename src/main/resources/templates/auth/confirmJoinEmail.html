@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/defaultLayout}">
+<body>
+
+<div layout:fragment="content">
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column p-6 mx-auto is-12-mobile is-6-desktop box">
+                    <h3 class="title is-4 is-size-4-mobile">이메일 인증</h3>
+                    <div class="content">
+                        <span th:if="${result}">회원가입이 완료되었습니다.</span>
+                        <span th:if="${!result}">인증 과정에서 오류가 발생하였습니다.</span>
+                    </div>
+                    <div class="field is-grouped" th:if="${result}">
+                        <div class="control">
+                            <button type="submit" class="button is-link" th:onclick="location.href='/login'">로그인 페이지로 이동</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+
+</body>
+
+</html>

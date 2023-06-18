@@ -21,12 +21,15 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private MemberStatus status;
 
-
     public Member(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
-        this.status = MemberStatus.JOINED;
+        this.status = MemberStatus.PENDING;
+    }
+
+    public void updateStatus(MemberStatus status) {
+        this.status = status;
     }
 
 }

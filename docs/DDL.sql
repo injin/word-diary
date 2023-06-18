@@ -6,7 +6,7 @@ CREATE TABLE `diary`.`member` (
   `member_id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `email` VARCHAR(255) NULL,
+  `email` VARCHAR(255) NOT NULL,
   `status` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   `created_date` DATETIME NOT NULL,
   `last_modified_date` DATETIME NOT NULL,
@@ -15,9 +15,9 @@ CREATE TABLE `diary`.`member` (
 
 -- 이메일 인증 테이블
 CREATE TABLE `diary`.`confirm_email` (
-  `confirm_email_id` INT NOT NULL,
+  `confirm_email_id` INT NOT NULL AUTO_INCREMENT,
   `member_id` INT NOT NULL,
-  `date_expired` DATETIME NOT NULL,
+  `date_expired` DATE NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `security_key` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`confirm_email_id`)

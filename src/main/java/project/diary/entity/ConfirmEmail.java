@@ -5,7 +5,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @Entity
 @Getter
@@ -18,9 +20,17 @@ public class ConfirmEmail {
     @Column(name = "confirm_email_id")
     private Long id;
     private Long memberId;
-    private LocalDateTime dateExpired;
+    private LocalDate dateExpired;
     private String email;
     private String securityKey;
+
+    public ConfirmEmail(Long memberId, String email) {
+        this.memberId = memberId;
+        this.email = email;
+        this.dateExpired = LocalDate.now().plusDays(1);
+        Random random = new Random();
+        this.securityKey = String.valueOf(random.nextInt(999999));
+    }
 
 
 }

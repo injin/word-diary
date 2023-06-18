@@ -19,3 +19,11 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
   #org.hibernate.type: trace
+
+server:
+  host: http://localhost:8080
+
+cloud:
+  aws:
+    credentials:
+      profile-name: diary

@@ -48,6 +48,11 @@
                            th:errors="*{password}">This email is invalid</p>
                     </div>
 
+                    <article class="message is-danger" th:if="${#fields.hasGlobalErrors()}">
+                        <div class="message-body">
+                            <span th:errors="*{global}">에러 메시지</span>
+                        </div>
+                    </article>
                     <div class="field is-grouped">
                         <div class="control">
                             <button type="submit" class="button is-link">완료</button>
