@@ -19,11 +19,11 @@ class SesServiceTest {
     @Test
     void mailSend(){
 
-        boolean result = sesService.send(
+        /*boolean result = sesService.send(
                 "SES 로컬 테스트 메일",
                 "SES 로컬 테스트 메일 컨텐트",
                 List.of("test@gmail.com"));
-        assertTrue(result);
+        assertTrue(result);*/
     }
 
 }

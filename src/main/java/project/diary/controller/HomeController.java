@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import project.diary.auth.CheckEmailValidator;
@@ -37,7 +36,7 @@ public class HomeController {
     }
 
     @PostMapping("/join")
-    public String join(@Valid MemberForm form, BindingResult result, Errors errors) {
+    public String join(@Valid MemberForm form, BindingResult result) {
 
         if (result.hasErrors()) {
             return "auth/join";
@@ -45,7 +44,8 @@ public class HomeController {
 
         boolean joinResult = memberService.join(form.getName(), form.getPassword(), form.getEmail());
         if (!joinResult) {
-            errors.reject("가입 오류 발생", "가입 처리 과정에서 오류가 발생하였습니다.");
+            result.reject("joinGlobal", "가입 처리 과정에서 오류가 발생하였습니다.");
+            return "auth/join";
         }
 
         return "redirect:/auth/confirmGuide";

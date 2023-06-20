@@ -23,7 +23,7 @@ import java.util.Optional;
 public class MemberService {
 
     @Value("${server.host}")
-    private String host;
+    private final String HOST;
 
     private final MemberRepository memberRepository;
     private final ConfrimEmailRepository confrimEmailRepository;
@@ -34,14 +34,13 @@ public class MemberService {
     public boolean join(String name, String password, String email) {
         Member savedMember = memberRepository.save(new Member(name,bCryptPasswordEncoder.encode(password), email));
         ConfirmEmail confirmEmail = confrimEmailRepository.save(new ConfirmEmail(savedMember.getId(), email));
-        String url = host + "/auth/confirmJoinEmail?memberId=" + savedMember.getId()
+        String url = HOST + "/auth/confirmJoinEmail?memberId=" + savedMember.getId()
                    + "&confirmId=" + confirmEmail.getId()
                    + "&key=" + confirmEmail.getSecurityKey();
         String subject = "[단어 일기장] 회원가입 인증 안내";
         String content = "아래의 링크를 클릭하여 인증을 완료해 주세요. <br>";
                content += "<a href='" + url + "'>" + url + "</a>";
         boolean result = sesService.send(subject, content, List.of(email));
-        //boolean result = true;
 
         return result;
     }

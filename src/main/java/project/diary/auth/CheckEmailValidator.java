@@ -19,9 +19,9 @@ public class CheckEmailValidator extends AbstractValidator<MemberForm> {
     @Override
     protected void doValidate(MemberForm form, Errors errors) {
         if (memberRepository.existsMemberByEmailAndStatus(form.getEmail(), MemberStatus.JOINED)) {
-            errors.rejectValue("email","이메일 중복 오류", "이미 사용 중인 이메일입니다.");
+            errors.rejectValue("email","duplicate", "이미 사용 중인 이메일입니다.");
         } else if (memberRepositoryCustom.existsPendingMember(form.getEmail()).isPresent()) {
-            errors.reject("이메일 인증 필요", "이메일 인증을 완료해 주세요.");
+            errors.reject("pending", "이메일 인증을 완료해 주세요.");
         }
     }
 }

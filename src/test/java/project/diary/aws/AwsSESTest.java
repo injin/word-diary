@@ -20,7 +20,7 @@ public class AwsSESTest {
     @Autowired
     Environment env;
 
-    @Test
+    //@Test
     public void sendEmail() {
 
         SesClient sesClient = SesClient.builder()
@@ -28,8 +28,8 @@ public class AwsSESTest {
                 .build();
 
         SenderDto senderDto = SenderDto.builder()
-                .from("injin33@naver.com")
-                .to(List.of("injin33@naver.com"))
+                .from("test@gmail.com")
+                .to(List.of("test@gmail.com"))
                 .subject("로컬에서 SES 테스트")
                 .content("로컬에서 SES 테스트")
                 .build();

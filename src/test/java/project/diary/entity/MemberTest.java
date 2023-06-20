@@ -25,7 +25,7 @@ class MemberTest {
     @Test
     public void testEntity() {
 
-        Member member = new Member("member6", "1234", "member6@gmail.com");
+        Member member = new Member("testMember", "1234", "testMember@gmail.com");
         em.persist(member);
 
         Word word1 = new Word();
