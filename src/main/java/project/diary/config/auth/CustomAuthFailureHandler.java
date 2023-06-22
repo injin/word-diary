@@ -1,4 +1,4 @@
-package project.diary.auth;
+package project.diary.config.auth;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

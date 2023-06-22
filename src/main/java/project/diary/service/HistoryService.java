@@ -3,12 +3,12 @@ package project.diary.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import project.diary.advice.Response;
+import project.diary.config.advice.Response;
 import project.diary.dto.HistoryDto;
 import project.diary.entity.History;
 import project.diary.entity.Member;
 import project.diary.entity.Word;
-import project.diary.error.ApiException;
+import project.diary.config.error.ApiException;
 import project.diary.repository.HistoryRepository;
 import project.diary.repository.MemberRepository;
 

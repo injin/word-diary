@@ -1,4 +1,4 @@
-package project.diary.error;
+package project.diary.config.error;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

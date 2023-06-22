@@ -1,4 +1,4 @@
-package project.diary.error;
+package project.diary.config.error;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

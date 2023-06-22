@@ -1,4 +1,4 @@
-package project.diary.advice;
+package project.diary.config.advice;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

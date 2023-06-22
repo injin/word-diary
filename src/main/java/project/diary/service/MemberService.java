@@ -23,7 +23,7 @@ import java.util.Optional;
 public class MemberService {
 
     @Value("${server.host}")
-    private final String HOST;
+    private String HOST;
 
     private final MemberRepository memberRepository;
     private final ConfrimEmailRepository confrimEmailRepository;

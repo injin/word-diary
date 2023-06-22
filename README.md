@@ -16,5 +16,6 @@
 ---
 
 ## 2. 제작노트
-- [[ep0] 제작 의도](https://tozitizi.tistory.com/entry/단어-일기장-제작-의도)
-- [[ep1] 오픈](https://tozitizi.tistory.com/entry/단어일기장-오픈)
+- [[ep0.] 제작 의도](https://tozitizi.tistory.com/entry/단어-일기장-제작-의도)
+- [[ep1.] 오픈](https://tozitizi.tistory.com/entry/단어일기장-오픈)
+- [[ep2.] 이메일 인증기능 개발 : Amazon SES](https://tozitizi.tistory.com/entry/word-diary-email-authentication)

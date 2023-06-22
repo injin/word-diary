@@ -1,4 +1,4 @@
-package project.diary.auth;
+package project.diary.config.auth;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package project.diary.aws;
+package project.diary.config.aws;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

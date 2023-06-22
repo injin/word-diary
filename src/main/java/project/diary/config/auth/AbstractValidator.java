@@ -1,4 +1,4 @@
-package project.diary.auth;
+package project.diary.config.auth;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.Errors;

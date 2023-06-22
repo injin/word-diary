@@ -1,4 +1,4 @@
-package project.diary.auth;
+package project.diary.config.auth;
 
 import java.util.ArrayList;
 import java.util.Collection;

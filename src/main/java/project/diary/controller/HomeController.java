@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import project.diary.auth.CheckEmailValidator;
+import project.diary.config.auth.CheckEmailValidator;
 import project.diary.service.MemberService;
 
 @Slf4j
