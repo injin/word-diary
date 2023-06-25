@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Random;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -29,7 +30,7 @@ public class ConfirmEmail {
         this.email = email;
         this.dateExpired = LocalDate.now().plusDays(1);
         Random random = new Random();
-        this.securityKey = String.valueOf(random.nextInt(999999));
+        this.securityKey = UUID.randomUUID().toString();
     }
 
 
