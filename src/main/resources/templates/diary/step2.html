@@ -8,7 +8,7 @@
         <div class="container">
             <div class="columns is-multiline">
                 <div class="column p-6 mx-auto has-text-centered is-12-mobile is-6-desktop box">
-                    <h3 class="title is-4 is-size-4-mobile">지금 아래의 단어가 떠오른 상태를 알아차려 봅니다.</h3>
+                    <h3 class="title is-4 is-size-4-mobile">단어는 저장되었으니 지금부터 5분간 마음을 비우고 눈을 감은채 현재에 집중해 보세요.</h3>
                     <div class="tags are-large is-centered" id="wordList">
                         <span class="tag" th:each="word : ${history.words}" th:text="${word.name}"></span>
                     </div>
